@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeShield — Women Safety App</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="file.css">
+</head>
+<body>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast">📍 Location shared with trusted contacts!</div>
+
+<!-- FLOATING SOS BUTTON -->
+<button id="sos-float" onclick="openSOS()">
+  <span class="sos-icon">🆘</span>SOS
+</button>
+
+<!-- SOS MODAL -->
+<div class="modal-overlay" id="sosModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSOS()">✕</button>
+    <div style="font-size:3rem;margin-bottom:0.5rem;">🆘</div>
+    <h2>Emergency SOS</h2>
+    <p>Select your emergency action. Your location will be shared automatically with the chosen contact.</p>
+    <div class="modal-btns">
+      <button class="modal-btn mb-police" onclick="triggerCall('Police – 100')">🚔 Call Police (100)</button>
+      <button class="modal-btn mb-family" onclick="triggerCall('Women Helpline – 181')">📞 Call Women Helpline (181)</button>
+      <button class="modal-btn mb-location" onclick="shareLocation()">📍 Share My Live Location</button>
+      <button class="modal-btn mb-cancel" onclick="closeSOS()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <span class="shield">🛡️</span>
+    <h1>Safe<span>Shield</span></h1>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#helplines">Helplines</a></li>
+    <li><a href="#safety-tips">Tips</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <button class="nav-emergency" onclick="openSOS()">🆘 SOS</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🛡️ Women Safety Initiative · Team No. 12</div>
+    <h2>Your Safety,<em>Our Priority.</em></h2>
+    <p class="hero-sub">SafeShield empowers women with instant SOS alerts, live location sharing, emergency helplines, and smart safety tools — all in one place.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="openSOS()">🆘 Activate SOS</button>
+      <button class="btn-outline" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Explore Features</button>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="phone-mock">
+      <div class="phone-bar"></div>
+      <div class="phone-sos-btn" onclick="openSOS()">
+        <span class="sos-txt">SOS</span>
+        <span class="sos-sub">PRESS &amp; HOLD</span>
+      </div>
+      <div class="phone-quick">
+        <div class="phone-quick-btn" onclick="triggerCall('Police')"><div class="pqb-icon">🚔</div><span class="pqb-lbl">Police</span></div>
+        <div class="phone-quick-btn" onclick="shareLocation()"><div class="pqb-icon">📍</div><span class="pqb-lbl">Location</span></div>
+        <div class="phone-quick-btn" onclick="showFakeCall()"><div class="pqb-icon">📞</div><span class="pqb-lbl">Fake Call</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCY FEATURES -->
+<section id="features" class="features-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Core Features</p>
+      <h2 class="section-title light">Emergency Safety Tools</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.5)">A complete safety system designed for real emergencies — fast, reliable, and always accessible.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal" onclick="openSOS()">
+        <div class="feature-icon-wrap" style="background:rgba(217,19,43,0.15);">🆘</div>
+        <h3>One-Tap SOS Alert</h3>
+        <p>Instantly alerts trusted contacts and emergency services with your live location on a single tap.</p>
+        <div class="feature-action">Activate Now →</div>
+      </div>
+      <div class="feature-card reveal" onclick="triggerCall('Police – 100')">
+        <div class="feature-icon-wrap" style="background:rgba(20,86,208,0.15);">🚔</div>
+        <h3>Police Call (100)</h3>
+        <p>Direct one-touch dialing to local police — fastest route to law enforcement in an emergency.</p>
+        <div class="feature-action">Call Police →</div>
+      </div>
+      <div class="feature-card reveal" onclick="shareLocation()">
+        <div class="feature-icon-wrap" style="background:rgba(13,158,110,0.15);">📍</div>
+        <h3>Live Location Share</h3>
+        <p>Share your real-time GPS location with family and trusted contacts instantly via a secure link.</p>
+        <div class="feature-action">Share Location →</div>
+      </div>
+      <div class="feature-card reveal" onclick="showFakeCall()">
+        <div class="feature-icon-wrap" style="background:rgba(232,122,16,0.15);">📞</div>
+        <h3>Fake Incoming Call</h3>
+        <p>Simulate an incoming call to escape uncomfortable or unsafe situations discreetly and safely.</p>
+        <div class="feature-action">Trigger Call →</div>
+      </div>
+      <div class="feature-card reveal" onclick="triggerCall('Women Helpline – 181')">
+        <div class="feature-icon-wrap" style="background:rgba(192,0,78,0.15);">👩</div>
+        <h3>Women Helpline 181</h3>
+        <p>National Women Helpline available 24/7, free of cost, for women in distress across all of India.</p>
+        <div class="feature-action">Call 181 →</div>
+      </div>
+      <div class="feature-card reveal" onclick="showSafetyTip()">
+        <div class="feature-icon-wrap" style="background:rgba(124,58,237,0.15);">🧠</div>
+        <h3>Smart Safety Tips</h3>
+        <p>Contextual safety advice for home, workplace, travel, and digital spaces — always ready when needed.</p>
+        <div class="feature-action">View Tips →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCY HELPLINES -->
+<section id="helplines" class="call-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Emergency Contacts</p>
+      <h2 class="section-title">Quick Dial Helplines</h2>
+      <p class="section-sub">Tap any card to initiate an emergency call. All numbers are free and available 24/7.</p>
+    </div>
+    <div class="call-grid reveal">
+      <div class="call-card cc-police" onclick="triggerCall('Police')">
+        <div class="cc-icon">🚔</div>
+        <h3>Police</h3>
+        <div class="cc-num">100</div>
+        <p>For immediate law enforcement in any emergency</p>
+      </div>
+      <div class="call-card cc-women" onclick="triggerCall('Women Helpline')">
+        <div class="cc-icon">👩‍💼</div>
+        <h3>Women Helpline</h3>
+        <div class="cc-num">181</div>
+        <p>National helpline for women in distress</p>
+      </div>
+      <div class="call-card cc-ambulance" onclick="triggerCall('Ambulance')">
+        <div class="cc-icon">🚑</div>
+        <h3>Ambulance</h3>
+        <div class="cc-num">108</div>
+        <p>Emergency medical services anywhere in India</p>
+      </div>
+      <div class="call-card cc-fire" onclick="triggerCall('Fire')">
+        <div class="cc-icon">🚒</div>
+        <h3>Fire Brigade</h3>
+        <div class="cc-num">101</div>
+        <p>Fire &amp; rescue emergency services</p>
+      </div>
+      <div class="call-card cc-child" onclick="triggerCall('Childline')">
+        <div class="cc-icon">🧒</div>
+        <h3>Childline</h3>
+        <div class="cc-num">1098</div>
+        <p>Child protection and emergency services</p>
+      </div>
+      <div class="call-card cc-cyber" onclick="triggerCall('Cyber Crime')">
+        <div class="cc-icon">💻</div>
+        <h3>Cyber Crime</h3>
+        <div class="cc-num">1930</div>
+        <p>Report online harassment and cyber crimes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE LOCATION TRACKER -->
+<section class="location-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Safety Feature</p>
+      <h2 class="section-title light">Live Location Tracker</h2>
+    </div>
+    <div class="location-box reveal">
+      <div class="location-map-placeholder">
+        <div class="map-grid"></div>
+        <div class="map-pin" id="mapPin">📍</div>
+        <div class="map-label" id="mapLabel">LOCATING...</div>
+      </div>
+      <div class="location-controls">
+        <h3>Share Your Location</h3>
+        <p>Your live GPS coordinates are encrypted and shared only with contacts you choose. Works even in background mode.</p>
+        <div class="loc-status">
+          <div class="loc-dot"></div>
+          <span class="loc-status-text" id="locStatus">GPS signal acquiring...</span>
+        </div>
+        <div class="loc-btns">
+          <button class="btn-loc btn-share-loc" onclick="shareLocation()">📍 Share Location Now</button>
+          <button class="btn-loc btn-fake-call" onclick="showFakeCall()">📞 Fake Call</button>
+        </div>
+        <p class="loc-privacy">🔒 Location data is never stored or sold. You control who sees it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY TIPS -->
+<section id="safety-tips" class="tips-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Stay Prepared</p>
+      <h2 class="section-title">Essential Safety Tips</h2>
+      <p class="section-sub">Knowledge is the first line of defense. These practical tips can help you stay safe every day.</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card reveal">
+        <div class="tip-num">TIP 01 · TRAVEL SAFETY</div>
+        <h3>📍 Always Share Your Route</h3>
+        <p>Before travelling, share your live location or planned route with a trusted family member or friend. Use apps that allow real-time tracking.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">TIP 02 · DIGITAL SAFETY</div>
+        <h3>🔐 Protect Your Online Privacy</h3>
+        <p>Never share personal details, home address, or daily schedule publicly. Report cyberbullying or stalking immediately to Cyber Crime helpline 1930.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">TIP 03 · PUBLIC SPACES</div>
+        <h3>👀 Stay Alert &amp; Aware</h3>
+        <p>Stay aware of your surroundings. Avoid dark, isolated areas especially at night. Walk confidently and trust your instincts — if something feels wrong, leave.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">TIP 04 · WORKPLACE SAFETY</div>
+        <h3>🏛️ Know the ICC at Your Workplace</h3>
+        <p>Every organisation must have an Internal Complaints Committee (ICC). Report harassment to the ICC immediately — it is your legal right under POSH Act 2013.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">TIP 05 · SELF-DEFENCE</div>
+        <h3>💪 Learn Basic Self-Defence</h3>
+        <p>Enrol in a basic self-defence class. Simple techniques like wrist releases, palm strikes, and noise-making can create a critical window to escape danger.</p>
+      </div>
+      <div class="tip-card reveal">
+        <div class="tip-num">TIP 06 · EMERGENCY PREP</div>
+        <h3>📱 Keep Emergency Numbers Ready</h3>
+        <p>Save 100, 181, 108 on speed dial. Keep your phone charged. Set up a trusted contact who can be reached if you are in distress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAKE CALL FEATURE -->
+<section class="fakecall-section">
+  <div class="container">
+    <div class="fakecall-box reveal">
+      <div class="fakecall-phone" id="fakeCallPhone">
+        <div class="fc-screen">
+          <div style="font-size:2.5rem;margin-bottom:0.5rem;">👩‍💼</div>
+          <div class="fc-caller" id="fcCaller">Mom</div>
+          <div class="fc-calling" id="fcStatus">Incoming Call...</div>
+        </div>
+        <div class="fc-btns">
+          <button class="fc-btn fc-decline">📵</button>
+          <button class="fc-btn fc-accept" onclick="showToast('✅ Fake call accepted — stay safe!')">📲</button>
+        </div>
+      </div>
+      <div class="fakecall-info">
+        <p class="section-label">Escape Tool</p>
+        <h3>Fake Incoming Call</h3>
+        <p>Feeling unsafe or uncomfortable? Trigger a realistic fake incoming call from "Mom", "Friend", or "Boss" to create a believable excuse to leave any situation immediately.</p>
+        <p class="fc-offline-note">Works offline. No internet needed.</p>
+        <div class="fc-trigger-row">
+          <button class="fc-trigger-btn" onclick="triggerFakeCall('Mom 👩')">📞 From Mom</button>
+          <button class="fc-trigger-btn fc-friend" onclick="triggerFakeCall('Best Friend 👯')">📞 From Friend</button>
+          <button class="fc-trigger-btn fc-boss" onclick="triggerFakeCall('Boss 💼')">📞 From Boss</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM STATEMENT -->
+<section id="about" class="problem-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Why SafeShield Exists</p>
+      <h2 class="section-title light">The Problem We're Solving</h2>
+    </div>
+    <p class="problem-text reveal">
+      Despite legal protections and social progress, women continue to face safety threats in public and private spaces — including harassment, stalking, assault, and violence. Many incidents go unreported due to fear, social stigma, and lack of trust in authorities. Existing safety mechanisms are often <strong class="highlight">reactive rather than preventive</strong>, and may fail in emergencies due to poor accessibility or technical limitations.
+    </p>
+    <div class="stats-row reveal">
+      <div class="stat-box"><div class="stat-num">181</div><div class="stat-lbl">Women Helpline</div></div>
+      <div class="stat-box"><div class="stat-num">100</div><div class="stat-lbl">Police Helpline</div></div>
+      <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Proposed Solutions</div></div>
+      <div class="stat-box"><div class="stat-num">ICC</div><div class="stat-lbl">Workplace Body</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STAKEHOLDERS -->
+<section class="stake-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Who Is Involved</p>
+      <h2 class="section-title">Key Stakeholders</h2>
+      <p class="section-sub">Women's safety is a shared responsibility involving multiple pillars of society working together.</p>
+    </div>
+    <div class="stake-grid reveal">
+      <div class="stake-card"><h3>👩 Women &amp; Girls</h3><p>Primary stakeholders and core beneficiaries of all safety measures and policies.</p></div>
+      <div class="stake-card"><h3>🏛️ Government Authorities</h3><p>Central and State Govts, Ministry of Women &amp; Child Development — responsible for laws and funding.</p></div>
+      <div class="stake-card"><h3>👮 Law Enforcement</h3><p>Police departments, women cells &amp; emergency response teams ensuring rapid action.</p></div>
+      <div class="stake-card"><h3>⚖️ Judiciary &amp; Legal System</h3><p>Courts ensuring justice, fast-track case resolution, and comprehensive legal protection.</p></div>
+      <div class="stake-card"><h3>🏙️ Local Administration</h3><p>Urban local bodies managing street lighting, CCTV surveillance, and public safety infrastructure.</p></div>
+      <div class="stake-card"><h3>🎓 Educational Institutions</h3><p>Schools and colleges with safety policies, awareness programs, and grievance redressal cells.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HELPLINE BANNER -->
+<section class="helpline-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="helpline-banner">
+        <div class="helpline-label">National Women Helpline · India · Free · 24/7</div>
+        <div class="helpline-num">181</div>
+        <div class="helpline-desc">Available for all women in distress across every state of India.<br>Confidential. Safe. Always answered.</div>
+        <button class="helpline-call-btn" onclick="triggerCall('Women Helpline 181')">📞 Call 181 Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="team-section">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label team-label">Built With Purpose</p>
+      <h2 class="section-title light">TEAM STARS </h2>
+      <div class="members-row">
+        <div class="member-chip">Nagmani</div>
+        <div class="member-chip">Harshalata</div>
+        <div class="member-chip">MD Ashraful</div>
+        <div class="member-chip">Sonu</div>
+        <div class="member-chip">Revansiddappa</div>
+        <div class="member-chip">Sajid</div>
+      </div>
+      <p class="team-note">Topic: Women Safety · Hackathon Project</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  🛡️ SafeShield — Women Safety App &nbsp;·&nbsp; Team Nagmani, &nbsp;·&nbsp; Built for a safer world
+</footer>
+
+<script src="file.js"></script>
+</body>
+</html>
